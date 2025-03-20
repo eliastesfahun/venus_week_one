@@ -44,3 +44,17 @@ console.log(name.toUpperCase())
 
 let num= 42;
 console.log(typeof(num))
+
+let sampleArr=["elias",12,true]
+console.log(sampleArr[0])
+
+let a;
+console.log(a)
+var numb = 24 * 55
+const Fname = 'elias'
+console.log(Fname[Fname.length-1])
+let array = ['bbb', 'hhh', 'hjdj', 2, 3, 4, true, false, true];
+console.log(array[3])
+
+
+
