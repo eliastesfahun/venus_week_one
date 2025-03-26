@@ -1,60 +1,56 @@
-console.log("Hello world")
-console.log('information')
 
-function exampleVar() {
-    if (true) {
-        var x = 10;
-    }
-    console.log(x)
+function startQuiz() {
+    currentQuestionIndex = 0
+    score = 0
+    showQuestion()
 }
 
-exampleVar()
+function showQuestion() {
+    resetState();
+    if (currentQuestionIndex < questions.length) {
+        let currentQuestion = questions[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.question;
 
-function exampleVar2() {
-    if (true) {
-        let k = 100;
-        k =30;
-        console.log(k)
+        currentQuestion.answers.forEach(answer => {
+            const button = document.createElement('button');
+            button.textContent = answer.text;
+            button.classList.add('btn');
+            button.addEventListener("click",()=> selectAnswer(answer, button));
+            answerButtons.appendChild(button)
+        })
+    } else {
+        showScore()
     }
-    //console.log(k)
 }
 
+function resetState() {
+    answerButtons.innerHTML = '';
+}
 
+function selectAnswer(answer, button) {
+    if (answer.correct) {
+        // if the answer is correct turn the button into green background color
+        button.style.backgroundColor = "green";
+        // update the score
+        score++
+    } else {
+        // if the answer is wrong turn the button into red background color
+        button.style.backgroundColor = "red"
+    }
 
-exampleVar2()
+    // move to the next question after 2 seconds
+    setTimeout(() => {
+        currentQuestionIndex++; // increase the index to move to the next question
+        showQuestion();
+    }, 2000)
 
-const arr=[1,2,3,4,5] ;
-arr.push(6)
-console.log(arr)
+}
 
-const ob={"name":"elias","age":25}
-console.log(ob.name)
-console.log(ob.age)
-ob.name="Girmay"
-console.log(ob.name)
-//const ob={"name":"pop"} and ob={"name":"pop"}
-//console.log(ob)
+function showScore() {
+    questionElement.innerHTML = `Quiz Over! you scored ${score} out of ${questions.length}.`;
+    answerButtons.innerHTML = '';
+}
 
-const name="Elias"
-console.log(name.length)
-console.log(name[3])
-console.log(name.toLowerCase())
-console.log(name.toUpperCase())
+// strat the quiz
 
-
-let num= 42;
-console.log(typeof(num))
-
-let sampleArr=["elias",12,true]
-console.log(sampleArr[0])
-
-let a;
-console.log(a)
-var numb = 24 * 55
-const Fname = 'elias'
-console.log(Fname[Fname.length-1])
-let array = ['bbb', 'hhh', 'hjdj', 2, 3, 4, true, false, true];
-console.log(array[3])
-
-
-
+startQuiz()
